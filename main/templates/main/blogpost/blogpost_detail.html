@@ -1,0 +1,8 @@
+{% extends 'main/base.html' %}
+{% block content %}
+
+    <h1 class="mt-5">{{ object.title }}</h1>
+    <p class="lead">{{ object.content }}</p>
+    <p><a href="{% url 'main:blogpost' %}" class="btn btn-secondary m-2"> &laquo; Назад</a> <a class="btn btn-danger" href="{% url 'main:delete_blogpost' object.pk %}" role="button">Удалить</a></p>
+
+{% endblock %}

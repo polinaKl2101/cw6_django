@@ -1,0 +1,15 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+    <div style="display: flex; flex-direction: column; gap: 10px;">
+        <h1 style="font-size: 24px; margin-bottom: 10px;">Редактирование лога</h1>
+        <div><b>Сообщение рассылки:</b> <i>{{ object.message }}</i></div>
+        <div><b>Дата и время последней рассылки:</b> {{ object.timedata }}</div>
+        <div><b>Статус рассылки:</b> {{ object.status }}</div>
+        <div><b>Ответ сервера:</b> {{ object.server_response }}</div>
+
+        <div class="col-12">
+            <a href="{% url 'main:log' %}" class="btn btn-secondary m-2"><< Назад</a>
+        </div>
+    </div>
+{% endblock %}

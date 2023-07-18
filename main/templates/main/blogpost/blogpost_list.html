@@ -1,0 +1,20 @@
+{% extends 'main/base.html' %}
+{% load my_tags %}
+
+{% block content %}
+
+    <div class="text-center">
+
+
+        <a class="btn btn-outline-primary" role="button" href="{% url 'main:create_blogpost' %}">Добавить пост</a>
+
+    </div>
+    {% for object in object_list %}
+        <div class="col-md-5">
+            <h2>{{ object.title }}</h2>
+            <p>{{ object.content|truncatechars:100 }}</p>
+            <p><a class="btn btn-secondary" href="{% url 'main:detail_blogpost' object.pk %}" role="button">Посмотреть &raquo; </a>  <a class="btn btn-outline-success" href="{% url 'main:update_blogpost' object.pk %}" role="button">Править</a></p>
+          </div>
+    {% endfor %}
+
+{% endblock %}

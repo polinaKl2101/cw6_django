@@ -1,0 +1,25 @@
+{% extends 'main/base.html' %}
+{% load my_tags %}
+
+{% block content %}
+
+    <div class="text-center">
+
+        {% if user.is_authenticated and not request.user.is_staff or user.is_superuser %}
+            <a class="btn btn-outline-primary" role="button" href="{% url 'main:create_client' %}">Добавить клиента</a>
+        {% endif %}
+    </div>
+    {% for object in object_list %}
+        <div class="col-md-5">
+            <h2>{{ object.fullname }}</h2>
+            <p>{{ object.email }}</p>
+            <p>{{ object.content }}</p>
+            {% if user.is_superuser or request.user.is_staff %}
+                <p><a class="btn btn-secondary" href="{% url 'main:update_client' object.pk %}" role="button">Править
+                    &raquo; </a> <a class="btn btn-outline-danger" href="{% url 'main:delete_client' object.pk %}"
+                                    role="button">Удалить</a></p>
+            {% endif %}
+        </div>
+    {% endfor %}
+
+{% endblock %}

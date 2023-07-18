@@ -1,0 +1,31 @@
+{% extends 'main/base.html' %}
+{% load my_tags %}
+{% load static %}
+
+{% block content %}
+    <div class="starter-template">
+        <h1>{{ title }}</h1>
+        <p class="lead"><br>Благодаря нашему сервису вы сможете узнавать новости первыми!</p>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6 text-info">
+            <h5 class="card-title text-uppercase text-center">Все рассылки</h5>
+            <p class="text-center text-dark">{{ mailing_number }}</p>
+        </div>
+        <div class="col-sm-6 text-info">
+            <h5 class="card-title text-uppercase text-center">Активные рассылки</h5>
+            <p class="text-center text-dark">{{ mailing_number_active }}</p>
+        </div>
+        <div class="col-sm-6 text-info">
+            <h5 class="card-title text-uppercase text-center">Клиенты</h5>
+            <p class="text-center text-dark">{{ unique_clients }}</p>
+        </div>
+        <div class="col-sm-6 text-info">
+            <h5 class="card-title text-uppercase text-center">Статьи</h5>
+            {% for i in blogpost %}
+                <p class="text-center text-dark">{{ i }}</p>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

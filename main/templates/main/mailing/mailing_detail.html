@@ -1,0 +1,22 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+    <div style="display: flex; flex-direction: column; gap: 10px;">
+        <h1 style="font-size: 24px; margin-bottom: 10px;">Редактирование рассылки</h1>
+        <div><b>Тема рассылки:</b> <i>{{ object.title }}</i></div>
+        <div><b>Текст рассылки:</b> {{ object.mail_body }}</div>
+        <div><b>Периодичность рассылки:</b> {{ object.frequency }}</div>
+        <div><b>Статус рассылки:</b> {{ object.status }}</div>
+        <div><b>Клиенты рассылки:</b>
+            {% if object.clients.all %}
+                {% for client in object.clients.all %}
+                    {{ client.email }}{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            {% endif %}
+        </div>
+
+        <div class="col-12">
+            <a href="{% url 'main:mailing' %}" class="btn btn-secondary m-2"><< Назад</a>
+        </div>
+    </div>
+{% endblock %}

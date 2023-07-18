@@ -1,0 +1,21 @@
+{% extends 'main/base.html' %}
+{% load my_tags %}
+{% block content %}
+
+    {% for object in object_list %}
+        <div class="col-3">
+            <div class="card mb-4 box-shadow">
+
+                <div class="card-body">
+                    <p> {{ object|title }}</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                            <a href="{% url 'main:detail_log' object.pk %}"
+                               class="btn btn-toolbar btn-outline-primary">Редактировать</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

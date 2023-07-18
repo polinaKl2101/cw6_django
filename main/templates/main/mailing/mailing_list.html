@@ -1,0 +1,39 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+    <div class="text-center">
+        {% if user.is_active and not request.user.is_staff or user.is_superuser %}
+            <a class="btn btn-outline-primary" role="button" href="{% url 'main:create_mailing' %}">Добавить
+                рассылку</a>
+        {% endif %}
+
+    </div>
+    {% for object in object_list %}
+        <div class="col-md-6">
+
+
+            <div class="card-body">
+
+                <p class="card-text">Рассылка: "{{ object|title }}"</p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                        {% if user.is_active and not request.user.is_staff or user.is_superuser %}
+                            <a href="{% url 'main:update_mailing' object.pk %}"
+                               class="btn btn-outline-primary">Редактировать</a>
+                            </div>
+                            <div class="btn-group">
+                                <a href="{% url 'main:detail_mailing' object.pk %}"
+                                   class="btn btn-outline-success">Просмотреть</a>
+                            </div>
+                            <div class="btn-group">
+                            <a href="{% url 'main:delete_mailing' object.pk %}"
+                               class="btn btn-outline-danger">Удалить</a>
+                        {% endif %}
+                        </div>
+                </div>
+            </div>
+        </div>
+
+    {% endfor %}
+
+{% endblock %}
